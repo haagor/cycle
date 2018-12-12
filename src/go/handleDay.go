@@ -5,13 +5,14 @@ import (
 	"fmt"
 )
 
-const Index = "cyle"
+const Index = "cycle"
+const Type = "day"
 const Mapping = `
 {
 	"mappings" : {
 		"day" : {
 			"properties" : {
-				"date" : { "type" : "date" },
+				"date" : { "type" : "keyword" },
 				"grade" : { "type" : "integer" },
 				"good" : { "type" : "keyword" },
 				"bad" : { "type" : "keyword" }

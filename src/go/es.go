@@ -15,7 +15,7 @@ func check(err error) {
 func creatIndex(esIndex string, esMapping string) {
 	request, err := http.NewRequest("PUT", "http://localhost:9200/"+esIndex, strings.NewReader(esMapping))
 	check(err)
-	request.Header.Set("Content-Type", "application/x-ndjson")
+	request.Header.Set("Content-Type", "application/json")
 
 	response, err := http.DefaultClient.Do(request)
 	check(err)
@@ -30,10 +30,10 @@ func deleteIndex(esIndex string) {
 	defer response.Body.Close()
 }
 
-func sendDoc(esIndex string, doc string) {
-	request, err := http.NewRequest("POST", "http://localhost:9200/"+esIndex, strings.NewReader(doc))
+func sendDoc(esIndex string, esType string, doc string) {
+	request, err := http.NewRequest("POST", "http://localhost:9200/"+esIndex+"/"+esType+"/", strings.NewReader(doc))
 	check(err)
-	request.Header.Set("Content-Type", "application/x-ndjson")
+	request.Header.Set("Content-Type", "application/json")
 
 	l_resp, err := http.DefaultClient.Do(request)
 	check(err)

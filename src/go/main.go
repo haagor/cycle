@@ -16,7 +16,7 @@ func main() {
 	l_router.HandleFunc("/cycle/init", initIndex).Methods("POST")
 	l_router.HandleFunc("/cycle/erase", eraseIndex).Methods("POST")
 
-	fmt.Println("listening...")
+	fmt.Println("> listening...")
 	log.Fatal(http.ListenAndServe(":8000", l_router))
 }
 
@@ -34,13 +34,17 @@ func day(writer http.ResponseWriter, request *http.Request) {
 
 func initIndex(writer http.ResponseWriter, request *http.Request) {
 	creatIndex(Index, Mapping)
+	fmt.Println(`> Index "` + Index + `" created`)
 }
 
 func eraseIndex(writer http.ResponseWriter, request *http.Request) {
 	deleteIndex(Index)
+	fmt.Println(`> Index "` + Index + `" erased`)
 }
 
 func processDay(day Day) string {
-	fmt.Printf("day : %v, grade : %v, good : %v, bad : %v\n", day.Date, day.Grade, day.Good, day.Bad)
+	doc := dayToStringJson(day)
+	sendDoc(Index, Type, doc)
+	fmt.Println(`> Inject one more day`)
 	return "Copy that ! See you tomorrow"
 }
