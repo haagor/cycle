@@ -35,7 +35,7 @@ func sendDoc(esIndex string, esType string, doc string) {
 	check(err)
 	request.Header.Set("Content-Type", "application/json")
 
-	l_resp, err := http.DefaultClient.Do(request)
+	response, err := http.DefaultClient.Do(request)
 	check(err)
-	defer l_resp.Body.Close()
+	defer response.Body.Close()
 }

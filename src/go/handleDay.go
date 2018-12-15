@@ -12,7 +12,7 @@ const Mapping = `
 	"mappings" : {
 		"day" : {
 			"properties" : {
-				"date" : { "type" : "keyword" },
+				"date" : { "type" : "date" },
 				"grade" : { "type" : "integer" },
 				"good" : { "type" : "keyword" },
 				"bad" : { "type" : "keyword" }
@@ -24,8 +24,8 @@ const Mapping = `
 type Day struct {
 	Date  string
 	Grade int
-	Good  string
-	Bad   string
+	Good  []string
+	Bad   []string
 }
 
 func dayToStringJson(day Day) string {
